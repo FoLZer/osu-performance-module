@@ -1,3 +1,3 @@
 "use strict";
 
-module.exports = require('bindings')("osu-performance");
+module.exports = require('bindings')("osu_performance");
