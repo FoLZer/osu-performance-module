@@ -6,7 +6,7 @@
   "scripts": {
     "install": "run-script-os",
     "install:win32": "IF exist .\\src\\osu-performance ( cd src\\osu-performance && git pull && cd ..\\.. && npm run gyp_fix ) ELSE ( git clone --recursive https://github.com/ppy/osu-performance src/osu-performance && npm run gyp_fix )",
-    "install:darwin:linux": "git clone --recursive https://github.com/ppy/osu-performance src/osu-performance 2>/dev/null || (cd src/osu-performance ; git pull ; cd ../..) && node inst.js && node-gyp rebuild && npm run gyp_fix",
+    "install:darwin:linux": "git clone --recursive https://github.com/ppy/osu-performance src/osu-performance 2>/dev/null || (cd src/osu-performance ; git pull ; cd ../..) && npm run gyp_fix",
     "gyp_fix": "npm run tinylogger_fix && npm run gyp_rebuild",
     "tinylogger_fix": "node inst.js",
     "gyp_rebuild": "node-gyp rebuild"
