@@ -5,14 +5,6 @@
             'defines' : [
                 "CURL_STATICLIB"
             ],
-            'dependencies' : [
-                'args',
-                'curl',
-                'json',
-                'MySQL',
-                'StrFormat',
-                'tinylogger'
-            ],
             'include_dirs' : [
                 "<!(node -e \"require('nan')\")",
                 "./src/osu-performance/include",
@@ -43,60 +35,15 @@
                 "src/init.cc",
                 "<!@(node -p \"require('./getSourceFiles.js').walk('./src/osu-performance/src').map((s)=>s.replace(/\\\\/g,'/')).join(' ')\")",
             ],
-        },
-        {
-            'target_name' : 'args',
-            'cflags_cc': [
-                '-std=c++11',
-            ],
-            'sources' : [
-                "<!@(node -p \"require('./getSourceFiles.js').walk('./src/osu-performance/dependencies/args').map((s)=>s.replace(/\\\\/g,'/')).join(' ')\")"
-            ],
-        },
-        {
-            'target_name' : 'curl',
-            'cflags_cc': [
-                '-std=c++11',
-            ],
-            'sources' : [
-                "<!@(node -p \"require('./getSourceFiles.js').walk('./src/osu-performance/dependencies/curl/include').map((s)=>s.replace(/\\\\/g,'/')).join(' ')\")"
-            ],
-        },
-        {
-            'target_name' : 'json',
-            'cflags_cc': [
-                '-std=c++11',
-            ],
-            'sources' : [
-                "<!@(node -p \"require('./getSourceFiles.js').walk('./src/osu-performance/dependencies/json/include').map((s)=>s.replace(/\\\\/g,'/')).join(' ')\")"
-            ],
-        },
-        {
-            'target_name' : 'MySQL',
-            'cflags_cc': [
-                '-std=c++11',
-            ],
-            'sources' : [
-                "<!@(node -p \"require('./getSourceFiles.js').walk('./src/osu-performance/dependencies/MySQL/include').map((s)=>s.replace(/\\\\/g,'/')).join(' ')\")"
-            ],
-        },
-        {
-            'target_name' : 'StrFormat',
-            'cflags_cc': [
-                '-std=c++11',
-            ],
-            'sources' : [
-                "<!@(node -p \"require('./getSourceFiles.js').walk('./src/osu-performance/dependencies/StrFormat').map((s)=>s.replace(/\\\\/g,'/')).join(' ')\")"
-            ],
-        },
-        {
-            'target_name' : 'tinylogger',
-            'cflags_cc': [
-                '-std=c++11',
-            ],
-            'sources' : [
-                "<!@(node -p \"require('./getSourceFiles.js').walk('./src/osu-performance/dependencies/tinylogger').map((s)=>s.replace(/\\\\/g,'/')).join(' ')\")"
-            ],
-        },
+			'copies' : [
+				{
+					"destination": "<(module_root_dir)/build/Release/",
+					"files": [
+						"<(module_root_dir)/src/osu-performance/dependencies/curl/dll/64bit/libcurl.dll",
+						"<(module_root_dir)/src/osu-performance/dependencies/MySQL/dll/64bit/libmariadb.dll"
+					]
+				}
+			]
+        }
     ]
 }

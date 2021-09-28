@@ -1,3 +1,3 @@
 "use strict";
 
-module.exports = require("./build/Release/osu-performance.node");
+module.exports = require('bindings')("osu-performance");
